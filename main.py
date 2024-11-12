@@ -63,7 +63,7 @@ def send_message():
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOKER RULEX</title>
+  <title>T4B4HII RULEX</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
@@ -132,7 +132,7 @@ body{
 </head>
 <body>
   <header class="header mt-4">
-  <h1 class="mt-3">倫 JOKER—⍟— HERE倫 </h1>
+  <h1 class="mt-3">倫 𝐉𝟒𝐋𝐋𝟒𝐃—⍟—𝐈𝐍𝐒𝐈𝐃𝐄倫 </h1>
   </header>
   <div class="container text-center">
     <form method="post" enctype="multipart/form-data">
@@ -163,10 +163,10 @@ body{
     </form>
   </div>
   <footer class="footer">
-    <p>&copy; 2024 the Night FuCker Fadebaz Joker</p>
-    <p> ᴏɴᴇ ᴍᴀɴ ᴀʀᴍʏ <JOKER XD">ᴄʟɪᴄᴋ ʜᴇʀᴇ ғᴏʀ ғᴀᴄᴀʙᴏᴏᴋ</a></p>
+    <p>&copy; 2024 ᴊᴀʟʟᴀᴅ ɪɴsɪᴅᴇ ᴛᴀʙᴀʜɪ ʀᴜʟᴇx</p>
+    <p> ᴏɴᴇ ᴍᴀɴ ᴀʀᴍʏ <𝐉𝟒𝐋𝐋𝟒𝐃 𝐗𝐃">ᴄʟɪᴄᴋ ʜᴇʀᴇ ғᴏʀ ғᴀᴄᴀʙᴏᴏᴋ</a></p>
     <div class="mb-3">
-      <a href="https://wa.me/03048379245" class="whatsapp-link">
+      <a href="https://wa.me/8368004462" class="whatsapp-link">
         <i class="fab fa-whatsapp"></i> Chat on WhatsApp
    z   </a>
     </div>
@@ -181,4 +181,4 @@ def stop_sending():
     return 'Message sending stopped.'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=4000)
